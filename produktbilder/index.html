@@ -231,6 +231,23 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 .anim .rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .anim .rv.in{opacity:1;transform:none}
 
+
+/* finpuss: maske-inngang på bilder, egen markør på glideren, Lenis */
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+.anim .mask{clip-path:inset(10% 8% 10% 8% round 28px);transition:clip-path 1.2s var(--ease)}
+.anim .mask>img,.anim .mask.ph{transition:transform 1.6s var(--ease)}
+.anim .mask>img{transform:scale(1.12)}
+.anim .mask.in{clip-path:inset(0 0 0 0 round 0px)}
+.anim .mask.in>img{transform:none}
+.cur{position:absolute;z-index:5;left:0;top:0;width:88px;height:88px;margin:-44px 0 0 -44px;border-radius:50%;background:var(--gul);color:var(--ink);display:grid;place-items:center;font:600 13px/1 var(--sans);letter-spacing:.04em;pointer-events:none;opacity:0;transform:translate(var(--cx,0),var(--cy,0)) scale(.6);transition:opacity .25s,transform .25s var(--ease) 0s;will-change:transform}
+@media (hover:hover) and (pointer:fine){
+  .ba{cursor:none}
+  .ba:hover .cur{opacity:1;transform:translate(var(--cx,0),var(--cy,0)) scale(1)}
+  .ba.drag .cur{transform:translate(var(--cx,0),var(--cy,0)) scale(.82)}
+  .ba:hover .knob{opacity:0}
+}
+.knob{transition:opacity .2s}
+
 @media (max-width:1100px){
   .plans{grid-template-columns:1fr 1fr}
   .formats{grid-template-columns:1fr 1fr}
@@ -294,7 +311,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
       <div class="note"><img src="img/aksel-96.webp" width="40" height="40" alt=""><span><b>Aksel Jakobsen, Rivan Studio.</b> Jeg lager og sjekker hvert bilde selv.</span></div>
     </div>
     <div>
-      <div class="ba" id="ba" style="--x:62%">
+      <div class="ba" id="ba" style="--x:62%"><span class="cur" aria-hidden="true">Dra</span>
         <img src="img/kal-etter.webp" srcset="img/kal-etter-540.webp 540w, img/kal-etter.webp 1080w" sizes="(max-width:900px) 92vw, 560px" width="1080" height="1350" alt="Etter: produktet i en julescene" fetchpriority="high">
         <div class="b-wrap"><img src="img/kal-for.webp" width="504" height="555" alt="Før: det vanlige produktbildet fra nettbutikken"></div>
         <span class="bar" aria-hidden="true"></span>
@@ -331,7 +348,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
         <button class="tab" role="tab" aria-selected="false" aria-controls="m4" id="t4"><span>04</span><b>Studio</b><small>Rent og rolig, i butikkens egne farger. Til produktsiden.</small></button>
       </div>
     </div>
-    <div class="stage rv">
+    <div class="stage rv mask">
       <div class="pane on ph" id="m1" role="tabpanel" aria-labelledby="t1" data-ph="Demo: duftlys, jul" style="--c1:#E4D3B6;--c2:#B99A6E"></div>
       <div class="pane ph" id="m2" role="tabpanel" aria-labelledby="t2" data-ph="Demo: duftlys, Black Friday" style="--c1:#3A342C;--c2:#16130F"></div>
       <div class="pane ph" id="m3" role="tabpanel" aria-labelledby="t3" data-ph="Demo: duftlys, vinter" style="--c1:#DCE2E6;--c2:#93A2AE"></div>
@@ -350,18 +367,18 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
       <div class="fm shop rv">
         <div class="bar-top" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="grid">
-          <figure class="ph" data-ph="Demo: hudkrem, studio" style="--c1:#ECE5DD;--c2:#C9B9A8"></figure>
+          <figure class="ph mask" data-ph="Demo: hudkrem, studio" style="--c1:#ECE5DD;--c2:#C9B9A8"></figure>
           <div class="meta" aria-hidden="true"><s style="width:80%"></s><s style="width:55%"></s><span class="p">349 kr</span><span class="k"></span></div>
         </div>
         <p class="cap"><b>Nettbutikk</b><span>4:5</span></p>
       </div>
       <div class="fm ig rv">
         <div class="who" aria-hidden="true"><i></i>butikken.deres</div>
-        <figure class="ph" data-ph="Demo: kaffe, vinter" style="--c1:#D8CFC4;--c2:#8E7B68"></figure>
+        <figure class="ph mask" data-ph="Demo: kaffe, vinter" style="--c1:#D8CFC4;--c2:#8E7B68"></figure>
         <p class="cap"><b>Instagram</b><span>4:5</span></p>
       </div>
       <div class="fm ad rv">
-        <figure class="ph" data-ph="" style="--c1:#3A342C;--c2:#16130F"><div class="copy">Black Friday<small>−30 % hele helgen</small></div></figure>
+        <figure class="ph mask" data-ph="" style="--c1:#3A342C;--c2:#16130F"><div class="copy">Black Friday<small>−30 % hele helgen</small></div></figure>
         <p class="cap"><b>Facebook-annonse</b><span>1:1</span></p>
       </div>
     </div>
@@ -476,7 +493,10 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 
 <div class="mbar" id="mbar"><a class="btn" href="#kontakt"><i aria-hidden="true"></i>Få 3 gratis bilder</a></div>
 
+<script src="js/lenis.min.js" defer></script>
 <script>
+/* Myk scrolling bare på PC med mus og uten redusert bevegelse */
+addEventListener('DOMContentLoaded', () => { if (window.Lenis && document.documentElement.classList.contains('anim') && matchMedia('(hover:hover) and (pointer:fine)').matches) { const l = new Lenis({ anchors: { offset: -72 }, lerp: 0.12 }); const raf = t => { l.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); } });
 document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new Date(el.dataset.until + 'T00:00:00+01:00')) el.remove(); });
 /* Meny får linje etter toppen, mobilknapp vises etter toppen og skjules ved skjemaet */
 (() => {
@@ -492,9 +512,11 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
   const set = v => { v = Math.max(0, Math.min(100, v)); ba.style.setProperty('--x', v + '%'); knob.setAttribute('aria-valuenow', Math.round(v)); };
   const fromEvent = e => { const r = ba.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
   let drag = false;
-  ba.addEventListener('pointerdown', e => { drag = true; ba.setPointerCapture(e.pointerId); fromEvent(e); });
-  ba.addEventListener('pointermove', e => { if (drag) fromEvent(e); });
-  ba.addEventListener('pointerup', () => drag = false);
+  const cur = ba.querySelector('.cur');
+  const follow = e => { const r = ba.getBoundingClientRect(); cur.style.setProperty('--cx', (e.clientX - r.left) + 'px'); cur.style.setProperty('--cy', (e.clientY - r.top) + 'px'); };
+  ba.addEventListener('pointerdown', e => { drag = true; ba.classList.add('drag'); ba.setPointerCapture(e.pointerId); fromEvent(e); });
+  ba.addEventListener('pointermove', e => { follow(e); if (drag) fromEvent(e); });
+  ba.addEventListener('pointerup', () => { drag = false; ba.classList.remove('drag'); });
   knob.addEventListener('keydown', e => { const v = parseFloat(knob.getAttribute('aria-valuenow')); if (e.key === 'ArrowLeft') { set(v - 5); e.preventDefault(); } if (e.key === 'ArrowRight') { set(v + 5); e.preventDefault(); } });
   if (document.documentElement.classList.contains('anim')) {
     const t0 = performance.now(), from = 88, to = 50, d = 1600;
@@ -513,7 +535,7 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
 })();
 /* Inngang ved scroll */
 (() => {
-  const els = document.querySelectorAll('.rv');
+  const els = document.querySelectorAll('.rv, .mask');
   if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   els.forEach(e => io.observe(e));
