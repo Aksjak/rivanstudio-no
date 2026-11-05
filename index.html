@@ -43,6 +43,7 @@ h1 em{font-style:normal;color:var(--gul)}
 .card p{color:var(--muted)}
 .go{margin-top:auto;padding-top:10px;font-weight:600;color:var(--gul)}
 .go::after{content:" →"}
+.soon:hover{border-color:var(--line);transform:none}.soon .go::after{content:""}
 .trust{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:36px;color:var(--muted);font-size:15px;padding:0;list-style:none}
 .trust li::before{content:"✓ ";color:var(--gul)}
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px}
@@ -63,12 +64,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
       <p>Ny, rask nettside som fungerer godt på mobilen, koblet til Google-profilen deres. Fast pris, avtalt før start.</p>
       <span class="go">Se nettsider</span>
     </a>
-    <a class="card" href="produktbilder/">
+    <!-- Bytt til <a class="card" href="produktbilder/"> og «Se produktbilder» når /produktbilder/ er publisert -->
+    <div class="card soon">
       <span class="tag">For nettbutikker</span>
       <h2>Produktbilder</h2>
       <p>Produktbilder med riktig lys, skygger og bakgrunn, klare til nettbutikken og sosiale medier.</p>
-      <span class="go">Se produktbilder</span>
-    </a>
+      <span class="go">Egen side kommer snart</span>
+    </div>
   </div>
   <ul class="trust"><li>Gratis utkast først</li><li>Fast pris</li><li>Dere betaler når dere er fornøyde</li></ul>
 </div></main>
