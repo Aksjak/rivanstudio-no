@@ -228,11 +228,15 @@ details p{padding:0 0 22px;color:var(--muted);max-width:60ch}
 .lf{display:grid;gap:14px;background:var(--paper);border:2px solid var(--ink);border-radius:22px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
 .lf label{display:grid;gap:6px;font-size:14px;font-weight:600}
 .lf label span{font-weight:400;color:var(--muted)}
-.lf input{font:inherit;font-size:16px;color:var(--ink);background:var(--ground);border:2px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;transition:border-color .2s,background .2s}
+.lf input{font:inherit;font-size:16px;color:var(--ink);background:var(--ground);border:2px solid #8C897F;border-radius:12px;padding:13px 14px;width:100%;transition:border-color .2s,background .2s}
 .lf input:focus{outline:none;border-color:var(--ink);background:#fff}
 .lf input[aria-invalid="true"]{border-color:#B43A1E}
+.lf .ferr{margin:-6px 0 0;font-size:14px;font-weight:600;color:#B43A1E}
+.lf .ferr::before{content:"! " / "";font-weight:800}
+.lf.done .ferr{display:none}
+.msg:focus{outline:none}
 .lf .cta{justify-content:center;margin-top:4px;border:0;cursor:pointer}
-.lf .cta[disabled]{opacity:.6;cursor:wait}
+.lf .cta[aria-disabled="true"]{opacity:.6;cursor:wait}
 .lf small{font-size:13px;color:var(--muted)}
 .lf .hp{position:absolute;left:-9999px}
 .msg{font-size:15px;min-height:1px}
@@ -242,7 +246,7 @@ details p{padding:0 0 22px;color:var(--muted);max-width:60ch}
 
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding:40px 0 56px;font-size:14px;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
-footer a{text-decoration:none}
+footer a{text-decoration:none;display:inline-block;padding:3px 0}
 footer a:hover{text-decoration:underline}
 
 /* flytende meny */
@@ -392,6 +396,7 @@ img.dl{background:var(--line)}
   .fbar .tel{width:52px;height:52px;flex:none}
   .fbar .go{flex:1;text-align:center;padding:16px 18px;font-size:16px}
   footer{padding-bottom:110px}
+  html{scroll-padding-bottom:96px}
 }
 @media (prefers-reduced-motion:reduce){
   .fl>span{transition:none}.fl>span:not(.on){display:none}
@@ -580,7 +585,7 @@ body{background:var(--ground)}
 
 /* Bransjevelger */
 .picker{display:flex;align-items:center;gap:8px;margin-top:clamp(52px,5.5vw,70px);padding-left:2%;flex-wrap:wrap}
-.picker>span{font-size:14px;color:var(--chalk-2);margin-right:6px}
+.picker>span{font-size:14px;color:var(--chalk-2);margin-right:6px;white-space:nowrap;flex:none}
 .picker button{font:600 14px/1 var(--text);color:var(--chalk);background:transparent;border:1.5px solid var(--night-line);border-radius:999px;padding:10px 15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .35s cubic-bezier(.34,1.56,.64,1)}
 .picker button:hover{border-color:rgba(255,255,255,.4)}
 .picker button:active{transform:scale(.94)}
@@ -691,6 +696,7 @@ html.retro .price,html.retro .card,html.retro .work,html.retro .sc,html.retro .l
 html.retro .final .tape{display:none}
 html.retro img{border:3px ridge #888!important}
 html.retro .sc{position:static!important;transform:none!important}
+html.retro .sc .num{background:#FFFF00!important}
 html.retro .fs{min-height:0!important;opacity:1!important;padding:12px 0!important}
 html.retro .fs h3{font-size:22px!important}
 html.retro .rt{color:#fff;border-color:#fff}
@@ -800,7 +806,7 @@ main{counter-reset:sec}
 /* Før/etter i en nettleserramme */
 .frame{border-radius:16px;background:#1D1D1B;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 44px 80px -46px rgba(0,0,0,.6)}
 .frame .url{color:#A7A49A}
-.fr-lbl{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#77746B;flex:none}
+.fr-lbl{font:600 11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#A7A49A;flex:none}
 .frame .compare{border:0;border-radius:0;box-shadow:none}
 .compare .l-a{background:var(--gul);color:var(--ink)}
 .compare .l-b{background:var(--ink);color:#fff;border:0}
@@ -832,7 +838,7 @@ main{counter-reset:sec}
 #eksempler .stat b{color:var(--chalk)}
 #eksempler .stat>span{color:var(--chalk-2)}
 .demos{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:26px 0 8px}
-.demos>span{color:var(--chalk-2);font-size:15px;margin-right:6px}
+.demos>span{color:var(--chalk-2);font-size:15px;margin-right:6px;white-space:nowrap;flex:none}
 .demos button{font:600 14px/1 var(--text);color:var(--chalk);background:transparent;border:1.5px solid var(--night-line);border-radius:999px;padding:10px 15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
 .demos button:hover{border-color:var(--gul);color:var(--gul)}
 
@@ -869,6 +875,8 @@ main{counter-reset:sec}
 .final .who img{box-shadow:0 0 0 2px var(--night),0 0 0 3.5px var(--gul)}
 .lf{border:0;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 80px -40px rgba(0,0,0,.9);border-radius:20px}
 .final .lf,.final .lf p,.final .lf .msg{color:var(--ink)}
+.final .lf .msg.err,.final .lf .ferr{color:#B43A1E}
+.final .lf .msg.err{font:600 15px/1.5 var(--text)}
 .final .lf small,.final .lf label span{color:var(--muted)}
 .lf .cta{background:var(--gul);color:var(--ink)}
 .lf .cta::before{background:#fff}
@@ -971,7 +979,7 @@ html.retro .work{background:#fff!important}
     </div>
   </div>
 </header>
-<div class="trust"><div class="wrap"><ul class="proof">
+<div class="trust" role="region" aria-label="Kort fortalt"><div class="wrap"><ul class="proof">
   <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Gratis utkast først</li>
   <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Fast pris, avtalt før start</li>
   <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Ferdig på under en uke</li>
@@ -1123,13 +1131,15 @@ html.retro .work{background:#fff!important}
           <input type="hidden" name="subject" value="Ny forespørsel: gratis utkast (rivanstudio.no/nettsider)">
           <input type="hidden" name="from_name" value="Rivan Studio nettsider">
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <label>Bedrift<input name="Bedrift" id="f-firma" required maxlength="80" autocomplete="organization" placeholder="For eksempel Hansen Rør AS"></label>
-          <label><span style="color:inherit;font-weight:600">Nettsiden dere har i dag <span>(valgfritt)</span></span><input name="Nettside" id="f-nett" maxlength="200" inputmode="url" placeholder="hansen-ror.no"></label>
-          <label>E-post<input name="email" id="f-epost" type="email" required maxlength="120" autocomplete="email" placeholder="post@firma.no"></label>
+          <label>Bedrift<input name="Bedrift" id="f-firma" required maxlength="80" autocomplete="organization" placeholder="For eksempel Hansen Rør AS" aria-describedby="f-firma-err"></label>
+          <p class="ferr" id="f-firma-err" hidden>Skriv inn navnet på bedriften.</p>
+          <label><span style="color:inherit;font-weight:600">Nettsiden dere har i dag <span>(valgfritt)</span></span><input name="Nettside" id="f-nett" maxlength="200" inputmode="url" autocomplete="url" placeholder="hansen-ror.no"></label>
+          <label>E-post<input name="email" id="f-epost" type="email" required maxlength="120" autocomplete="email" placeholder="post@firma.no" aria-describedby="f-epost-err"></label>
+          <p class="ferr" id="f-epost-err" hidden>Skriv inn en gyldig e-postadresse, for eksempel post@firma.no.</p>
           <label><span style="color:inherit;font-weight:600">Telefon <span>(valgfritt)</span></span><input name="Telefon" id="f-tlf" type="tel" maxlength="20" autocomplete="tel" placeholder="8 siffer"></label>
           <button class="cta" type="submit">Få gratis utkast <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <small>Uforpliktende. Opplysningene brukes bare til å svare deg. <a href="personvern/">Personvern</a> · <a href="vilkar/">Vilkår</a></small>
-          <p class="msg" id="lead-msg" role="status" aria-live="polite"></p>
+          <p class="msg" id="lead-msg" role="status" aria-live="polite" tabindex="-1"></p>
         </form>
       </div>
     </div>
@@ -1191,24 +1201,31 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
   const msg = document.getElementById('lead-msg');
   const firma = new URLSearchParams(location.search).get('firma');
   if (firma) document.getElementById('f-firma').value = firma.replace(/[\u0000-\u001F<>]/g, '').trim().slice(0, 80);
+  const check = i => { const ok = !!(i.checkValidity() && i.value.trim()); i.setAttribute('aria-invalid', ok ? 'false' : 'true'); const er = document.getElementById(i.id + '-err'); if (er) er.hidden = ok; return ok; };
+  /* Feilen forsvinner straks feltet er rettet */
+  f.querySelectorAll('input[required]').forEach(i => i.addEventListener('input', () => { if (i.getAttribute('aria-invalid') === 'true' && check(i) && !f.querySelector('[aria-invalid="true"]')) { msg.className = 'msg'; msg.textContent = ''; } }));
   f.addEventListener('submit', async e => {
     e.preventDefault();
+    if (f.getAttribute('aria-busy')) return;
     msg.className = 'msg'; msg.textContent = '';
-    let bad = null;
-    f.querySelectorAll('input[required]').forEach(i => { const ok = i.checkValidity() && i.value.trim(); i.setAttribute('aria-invalid', ok ? 'false' : 'true'); if (!ok && !bad) bad = i; });
-    if (bad) { msg.className = 'msg err'; msg.textContent = 'Fyll inn bedrift og en gyldig e-postadresse.'; bad.focus(); return; }
-    const btn = f.querySelector('button'); btn.disabled = true;
+    let bad = null, n = 0;
+    f.querySelectorAll('input[required]').forEach(i => { if (!check(i)) { n++; if (!bad) bad = i; } });
+    if (bad) { msg.className = 'msg err'; msg.textContent = n > 1 ? 'Fyll inn bedrift og e-post, så sender jeg utkastet.' : (bad.id === 'f-epost' ? 'Sjekk e-postadressen.' : 'Fyll inn navnet på bedriften.'); bad.focus(); return; }
+    const btn = f.querySelector('button'), label = btn.firstChild.nodeValue;
+    btn.setAttribute('aria-disabled', 'true'); btn.firstChild.nodeValue = 'Sender … '; f.setAttribute('aria-busy', 'true'); msg.textContent = 'Sender …';
     try {
       const r = await fetch(f.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(f) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || j.success === false) throw new Error(j.message || r.status);
       f.classList.add('done');
       msg.textContent = 'Takk! Jeg har fått beskjeden og sender utkastet til e-posten du oppga, vanligvis innen to virkedager. Hilsen Aksel';
+      msg.focus(); /* knappen forsvinner, så fokus flyttes til kvitteringen */
     } catch (err) {
       msg.className = 'msg err';
-      msg.innerHTML = 'Noe gikk galt. Send gjerne en e-post til <a href="mailto:aksel@rivanstudio.com">aksel@rivanstudio.com</a> i stedet.';
-      btn.disabled = false;
+      msg.innerHTML = 'Noe gikk galt, og meldingen ble ikke sendt. Prøv igjen, eller send en e-post til <a href="mailto:aksel@rivanstudio.com">aksel@rivanstudio.com</a>.';
+      btn.removeAttribute('aria-disabled'); btn.firstChild.nodeValue = label;
     }
+    f.removeAttribute('aria-busy');
   });
 })();
 /* Seksjoner glir inn */
