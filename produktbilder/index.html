@@ -105,7 +105,8 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .row{display:flex;gap:16px;width:max-content}
 .anim .row{animation:glide 60s linear infinite}
 .row:hover,.wall.paused .row,.wall:focus-within .row{animation-play-state:paused}
-.wall-pause{display:none;margin:14px auto 0;font-family:inherit;font-weight:600;font-size:13px;line-height:1;color:var(--ink-2);background:var(--card);border:1.5px solid #858278;border-radius:99px;padding:9px 16px;cursor:pointer}
+.wall-pause{display:none;margin:6px auto 0;font-family:inherit;font-weight:400;font-size:12px;line-height:1;color:var(--muted);background:none;border:0;padding:8px 10px;cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px}
+.wall-pause:hover{text-decoration-color:currentColor}
 .anim .wall-pause{display:block}
 .wall-pause:focus-visible{outline:3px solid var(--gul);outline-offset:3px}
 @keyframes glide{to{transform:translateX(calc(-50% - 8px))}}
@@ -220,7 +221,7 @@ details p{padding:0 0 22px;color:var(--muted);max-width:60ch}
 form{display:grid;gap:14px}
 label{display:grid;gap:7px;font-size:14px;font-weight:600}
 label span{color:var(--muted);font-weight:400}
-input,textarea{font:inherit;font-size:16px;padding:15px 16px;border:1.5px solid #858278;border-radius:14px;background:var(--paper);width:100%;color:var(--ink)}
+input,textarea{font:inherit;font-size:16px;padding:15px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);width:100%;color:var(--ink)}
 textarea{min-height:88px;resize:vertical}
 input:focus,textarea:focus{outline:0;border-color:var(--ink);background:#fff}
 form .btn{margin-top:6px}
