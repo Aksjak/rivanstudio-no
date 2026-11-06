@@ -104,7 +104,10 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .wall{padding:40px 0 24px;overflow:hidden}
 .row{display:flex;gap:16px;width:max-content}
 .anim .row{animation:glide 60s linear infinite}
-.row:hover{animation-play-state:paused}
+.row:hover,.wall.paused .row,.wall:focus-within .row{animation-play-state:paused}
+.wall-pause{display:none;margin:14px auto 0;font-family:inherit;font-weight:600;font-size:13px;line-height:1;color:var(--ink-2);background:var(--card);border:1.5px solid #858278;border-radius:99px;padding:9px 16px;cursor:pointer}
+.anim .wall-pause{display:block}
+.wall-pause:focus-visible{outline:3px solid var(--gul);outline-offset:3px}
 @keyframes glide{to{transform:translateX(calc(-50% - 8px))}}
 .tile{width:clamp(200px,19vw,280px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;position:relative;flex:none;background:var(--paper-2)}
 .tile img{width:100%;height:100%;object-fit:cover}
@@ -217,13 +220,16 @@ details p{padding:0 0 22px;color:var(--muted);max-width:60ch}
 form{display:grid;gap:14px}
 label{display:grid;gap:7px;font-size:14px;font-weight:600}
 label span{color:var(--muted);font-weight:400}
-input,textarea{font:inherit;font-size:16px;padding:15px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper);width:100%;color:var(--ink)}
+input,textarea{font:inherit;font-size:16px;padding:15px 16px;border:1.5px solid #858278;border-radius:14px;background:var(--paper);width:100%;color:var(--ink)}
 textarea{min-height:88px;resize:vertical}
 input:focus,textarea:focus{outline:0;border-color:var(--ink);background:#fff}
 form .btn{margin-top:6px}
+form .btn[aria-disabled=true]{opacity:.6;cursor:progress}
 form small{color:var(--muted);font-size:13px}
 .hp{display:none}
-.msg{font-weight:600;font-size:15px}.msg.ok{color:#1F7A4D}.msg.err{color:#B3261E}
+input[aria-invalid=true],textarea[aria-invalid=true]{border-color:#B3261E}
+.ferr{color:#B3261E;font-size:13px;font-weight:600}.ferr:empty{display:none}
+.msg{font-weight:600;font-size:15px}.msg:focus{outline:0}.msg.ok{color:#1F7A4D}.msg.err{color:#B3261E}
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding:44px 0 56px;font-size:14px;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:20px}
 footer a{text-decoration:none}footer a:hover{color:var(--ink)}
@@ -284,6 +290,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
   summary{font-size:22px}
   .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:30;transform:translateY(140%);transition:transform .4s var(--ease)}
   .mbar.on{transform:none}
+  html{scroll-padding-bottom:90px}
   .mbar .btn{flex:1;box-shadow:0 14px 30px -10px rgba(0,0,0,.5)}
   footer{padding-bottom:110px}
 }
@@ -327,7 +334,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
   </div>
 </section>
 
-<section class="wall" aria-label="Eksempler på bilder">
+<section class="wall" id="wall" aria-label="Eksempler på bilder">
   <div class="row" id="row">
     <div class="tile for"><img src="img/lunnhei-for.webp" srcset="img/lunnhei-for-540.webp 540w, img/lunnhei-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: nattkremen på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
     <div class="tile"><img src="img/lunnhei-kveld.webp" srcset="img/lunnhei-kveld-540.webp 540w, img/lunnhei-kveld.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: nattkremen på en rosa terrazzobenk med varme lys i bakgrunnen" decoding="async"></div>
@@ -336,6 +343,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
     <div class="tile for"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: duftlyset på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
     <div class="tile"><img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: duftlyset tent i en vinduskarm en vinterkveld" decoding="async"></div>
   </div>
+  <button class="wall-pause" id="wall-pause" type="button" aria-pressed="false">Pause bildene</button>
 </section>
 <p class="wall-cap">Hvert stemningsbilde er laget av ett vanlig produktbilde og tilpasset julesalget. Vardlys, Ravnsbrygg og Lunnhei er demoprodukter vi har laget selv, ikke kunders. Etter jul kan stemningen byttes til vinter eller vår.</p>
 
@@ -477,12 +485,12 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
       <input type="hidden" name="subject" value="Ny forespørsel: gratis produktbilder (rivanstudio.no/produktbilder)">
       <input type="hidden" name="from_name" value="Rivan Studio produktbilder">
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <label>Nettbutikk<input name="Nettbutikk" required maxlength="200" inputmode="url" placeholder="For eksempel minbutikk.no"></label>
+      <label>Nettbutikk<input name="Nettbutikk" id="f-butikk" required maxlength="200" inputmode="url" autocomplete="url" placeholder="For eksempel minbutikk.no" aria-describedby="f-butikk-err"><span class="ferr" id="f-butikk-err"></span></label>
       <label><span style="color:inherit;font-weight:600">Produkt <span>(valgfritt)</span></span><textarea name="Produkt" maxlength="500" placeholder="Lenke til produktet, eller navnet på det"></textarea></label>
-      <label>E-post<input name="email" type="email" required maxlength="120" autocomplete="email" placeholder="post@butikk.no"></label>
+      <label>E-post<input name="email" id="f-epost" type="email" required maxlength="120" autocomplete="email" placeholder="post@butikk.no" aria-describedby="f-epost-err"><span class="ferr" id="f-epost-err"></span></label>
       <button class="btn" type="submit"><i aria-hidden="true"></i>Få 3 gratis bilder</button>
       <small>Uforpliktende. Opplysningene brukes bare til å svare deg. <a href="../nettsider/personvern/">Personvern</a></small>
-      <p class="msg" id="lead-msg" role="status" aria-live="polite"></p>
+      <p class="msg" id="lead-msg" role="status" aria-live="polite" tabindex="-1"></p>
     </form>
   </div>
 </section>
@@ -492,7 +500,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
   <footer><span>Rivan Studio · Aksel Jakobsen · Øygarden · Org.nr. 937 616 716</span><nav aria-label="Bunnmeny"><a href="../nettsider/">Nettsider</a><a href="../nettsider/personvern/">Personvern</a><a href="tel:+4740328990">403 28 990</a><a href="mailto:aksel@rivanstudio.com">aksel@rivanstudio.com</a></nav></footer>
 </div>
 
-<div class="mbar" id="mbar"><a class="btn" href="#kontakt"><i aria-hidden="true"></i>Få 3 gratis bilder</a></div>
+<div class="mbar" id="mbar" role="region" aria-label="Hurtigvalg"><a class="btn" href="#kontakt"><i aria-hidden="true"></i>Få 3 gratis bilder</a></div>
 
 <script src="js/lenis.min.js" defer></script>
 <script>
@@ -510,7 +518,7 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
 /* Før/etter-glider: dra, klikk eller piltaster. Glir én gang inn ved lasting. */
 (() => {
   const ba = document.getElementById('ba'), knob = document.getElementById('knob');
-  const set = v => { v = Math.max(0, Math.min(100, v)); ba.style.setProperty('--x', v + '%'); knob.setAttribute('aria-valuenow', Math.round(v)); };
+  const set = v => { v = Math.max(0, Math.min(100, v)); ba.style.setProperty('--x', v + '%'); knob.setAttribute('aria-valuenow', Math.round(v)); knob.setAttribute('aria-valuetext', Math.round(v) + ' % før-bilde, ' + (100 - Math.round(v)) + ' % etter-bilde'); };
   const fromEvent = e => { const r = ba.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
   let drag = false;
   const cur = ba.querySelector('.cur');
@@ -518,15 +526,17 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
   ba.addEventListener('pointerdown', e => { drag = true; ba.classList.add('drag'); ba.setPointerCapture(e.pointerId); fromEvent(e); });
   ba.addEventListener('pointermove', e => { follow(e); if (drag) fromEvent(e); });
   ba.addEventListener('pointerup', () => { drag = false; ba.classList.remove('drag'); });
-  knob.addEventListener('keydown', e => { const v = parseFloat(knob.getAttribute('aria-valuenow')); if (e.key === 'ArrowLeft') { set(v - 5); e.preventDefault(); } if (e.key === 'ArrowRight') { set(v + 5); e.preventDefault(); } });
+  knob.addEventListener('keydown', e => { const v = parseFloat(knob.getAttribute('aria-valuenow')); const n = { ArrowLeft: v - 5, ArrowDown: v - 5, ArrowRight: v + 5, ArrowUp: v + 5, PageDown: v - 20, PageUp: v + 20, Home: 0, End: 100 }[e.key]; if (n !== undefined) { set(n); e.preventDefault(); } });
   if (document.documentElement.classList.contains('anim')) {
     const t0 = performance.now(), from = 88, to = 50, d = 1600;
     const step = t => { const k = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - k, 3); if (!drag) set(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
     setTimeout(() => requestAnimationFrame(step), 500);
   } else set(50);
 })();
-/* Bildeveggen går i ring: kopier radene én gang */
-(() => { const r = document.getElementById('row'); r.innerHTML += r.innerHTML; [...r.children].slice(r.children.length / 2).forEach(c => c.setAttribute('aria-hidden', 'true')); })();
+/* Bildeveggen går i ring: kopier radene én gang. Pauseknapp for tastatur og berøring. */
+(() => { const r = document.getElementById('row'); r.innerHTML += r.innerHTML; [...r.children].slice(r.children.length / 2).forEach(c => c.setAttribute('aria-hidden', 'true'));
+  const w = document.getElementById('wall'), b = document.getElementById('wall-pause');
+  b.addEventListener('click', () => { const p = w.classList.toggle('paused'); b.setAttribute('aria-pressed', p); b.textContent = p ? 'Spill av bildene' : 'Pause bildene'; }); })();
 /* Stemninger: faner */
 (() => {
   const tabs = [...document.querySelectorAll('.tab')];
@@ -543,17 +553,25 @@ document.querySelectorAll('[data-until]').forEach(el => { if (new Date() >= new 
 })();
 /* Skjema */
 (() => {
-  const f = document.getElementById('lead'), msg = document.getElementById('lead-msg');
+  const f = document.getElementById('lead'), msg = document.getElementById('lead-msg'), b = f.querySelector('button');
+  const fields = [['f-butikk', 'Skriv adressen til nettbutikken.'], ['f-epost', 'Skriv en gyldig e-postadresse.']].map(([id, t]) => [document.getElementById(id), document.getElementById(id + '-err'), t]);
+  const check = () => { let first = null; fields.forEach(([el, err, t]) => { const ok = el.checkValidity(); el.setAttribute('aria-invalid', !ok); err.textContent = ok ? '' : t; if (!ok && !first) first = el; }); return first; };
+  fields.forEach(([el, err]) => el.addEventListener('input', () => { if (el.getAttribute('aria-invalid') === 'true' && el.checkValidity()) { el.setAttribute('aria-invalid', 'false'); err.textContent = ''; } }));
+  let busy = false;
   f.addEventListener('submit', async e => {
     e.preventDefault();
-    if (!f.checkValidity()) { msg.className = 'msg err'; msg.textContent = 'Fyll inn nettbutikk og en gyldig e-postadresse.'; f.reportValidity(); return; }
-    const b = f.querySelector('button'); b.disabled = true; msg.className = 'msg'; msg.textContent = 'Sender …';
+    if (busy) return;
+    const bad = check();
+    if (bad) { msg.className = 'msg err'; msg.textContent = 'Fyll inn nettbutikk og en gyldig e-postadresse.'; bad.focus(); return; }
+    busy = true; b.setAttribute('aria-disabled', 'true'); msg.className = 'msg'; msg.textContent = 'Sender …';
     try {
       const r = await fetch(f.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) });
       const j = await r.json(); if (!j.success) throw 0;
       msg.className = 'msg ok'; msg.textContent = 'Takk! Du hører fra meg snart, vanligvis innen to virkedager.'; f.reset();
+      fields.forEach(([el]) => el.removeAttribute('aria-invalid'));
+      msg.focus();
     } catch { msg.className = 'msg err'; msg.textContent = 'Noe gikk galt. Send gjerne en e-post til aksel@rivanstudio.com i stedet.'; }
-    b.disabled = false;
+    busy = false; b.removeAttribute('aria-disabled');
   });
 })();
 </script>
