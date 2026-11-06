@@ -90,14 +90,15 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ba .b{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
 .ba .b-wrap{position:absolute;inset:0;background:#fff;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
-.ba .b-wrap img{object-fit:contain;padding:14%;background:#fff}
+.ba .b-wrap img{object-fit:cover}
 .ba .bar{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
 .ba .knob{position:absolute;top:50%;left:var(--x);width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.45)}
 .ba .knob:focus-visible{outline:3px solid var(--gul);outline-offset:3px}
 .ba .t{position:absolute;top:16px;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:8px 10px;border-radius:8px;pointer-events:none}
 .ba .t.f{left:16px;background:rgba(255,255,255,.92)}
 .ba .t.e{right:16px;background:var(--gul)}
-.ba-cap{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-size:14px;color:var(--muted)}
+.ba-cap span{white-space:nowrap}
+.ba-cap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin-top:14px;font-size:14px;color:var(--muted)}
 
 /* bildevegg */
 .wall{padding:40px 0 24px;overflow:hidden}
@@ -107,10 +108,8 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 @keyframes glide{to{transform:translateX(calc(-50% - 8px))}}
 .tile{width:clamp(200px,19vw,280px);aspect-ratio:4/5;border-radius:16px;overflow:hidden;position:relative;flex:none;background:var(--paper-2)}
 .tile img{width:100%;height:100%;object-fit:cover}
-.ph{background:
-  radial-gradient(120% 80% at 70% 10%,rgba(255,255,255,.55),transparent 60%),
-  linear-gradient(160deg,var(--c1,#D9CDB8),var(--c2,#B9A88C))}
-.ph::after{content:attr(data-ph);position:absolute;left:12px;bottom:12px;right:12px;font:600 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:rgba(22,21,19,.55)}
+.tile.for{background:#fff}
+.chip{position:absolute;top:12px;left:12px;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:7px 9px;border-radius:7px;background:rgba(243,239,231,.94);color:var(--ink)}
 .wall-cap{text-align:center;font-size:14px;color:var(--muted);margin-top:18px}
 
 /* seksjoner */
@@ -119,7 +118,7 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .sec-head .label{margin-bottom:22px}
 .sec-head .lede{justify-self:end}
 
-/* én vare, fire stemninger */
+/* tre demoprodukter, faner */
 .moods{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:56px;align-items:center}
 .tabs{display:grid;gap:4px;margin-top:8px}
 .tab{all:unset;cursor:pointer;display:grid;grid-template-columns:52px 1fr;align-items:baseline;padding:18px 0;border-top:1px solid var(--line);transition:color .2s}
@@ -135,11 +134,15 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .stage .pane{position:absolute;inset:0;opacity:0;transform:scale(1.03);transition:opacity .6s var(--ease),transform .9s var(--ease)}
 .stage .pane.on{opacity:1;transform:none}
 .stage .pane img{width:100%;height:100%;object-fit:cover}
+.stage .inset{position:absolute;top:18px;right:18px;width:23%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 14px 34px -14px rgba(0,0,0,.55)}
+.stage .inset img{display:block}
+.stage .inset b{position:absolute;left:7px;bottom:7px;font:600 10px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:6px 7px;border-radius:6px;background:var(--paper)}
 
 /* formater */
 .formats{display:grid;grid-template-columns:1.05fr .8fr 1fr;gap:20px;align-items:end}
 .fm{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.fm figure{margin:0;border-radius:12px;overflow:hidden;position:relative}
+.fm figure{margin:0;border-radius:12px;overflow:hidden;position:relative;background:var(--paper-2)}
+.fm figure>img{display:block;width:100%;height:100%;object-fit:cover}
 .fm .cap{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:12px}
 .fm .cap b{color:var(--ink);font-weight:600}
 .shop .bar-top{display:flex;gap:6px;margin-bottom:12px}.shop .bar-top i{width:9px;height:9px;border-radius:50%;background:var(--line)}
@@ -153,7 +156,8 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .ig .who i{width:26px;height:26px;border-radius:50%;background:linear-gradient(45deg,#F5B13D,#D6336C)}
 .ig figure{aspect-ratio:4/5}
 .ad figure{aspect-ratio:1}
-.ad .copy{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font:400 30px/1 var(--serif)}
+.ad figure>img{object-position:50% 55%}
+.ad .copy{position:absolute;left:0;right:0;top:0;padding:18px 18px 44px;background:linear-gradient(rgba(0,0,0,.62),transparent);color:#fff;font:400 30px/1 var(--serif)}
 .ad .copy small{display:block;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-top:10px;color:var(--gul)}
 
 /* slik */
@@ -235,7 +239,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 /* finpuss: maske-inngang på bilder, egen markør på glideren, Lenis */
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 .anim .mask{clip-path:inset(10% 8% 10% 8% round 28px);transition:clip-path 1.2s var(--ease)}
-.anim .mask>img,.anim .mask.ph{transition:transform 1.6s var(--ease)}
+.anim .mask>img{transition:transform 1.6s var(--ease)}
 .anim .mask>img{transform:scale(1.12)}
 .anim .mask.in{clip-path:inset(0 0 0 0 round 0px)}
 .anim .mask.in>img{transform:none}
@@ -312,47 +316,47 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
     </div>
     <div>
       <div class="ba" id="ba" style="--x:62%"><span class="cur" aria-hidden="true">Dra</span>
-        <img src="img/kal-etter.webp" srcset="img/kal-etter-540.webp 540w, img/kal-etter.webp 1080w" sizes="(max-width:900px) 92vw, 560px" width="1080" height="1350" alt="Etter: produktet i en julescene" fetchpriority="high">
-        <div class="b-wrap"><img src="img/kal-for.webp" width="504" height="555" alt="Før: det vanlige produktbildet fra nettbutikken"></div>
+        <img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 92vw, 560px" width="1080" height="1350" alt="Etter: duftlyset tent i en vinduskarm med papirstjerne, strikkepledd og granbar" fetchpriority="high">
+        <div class="b-wrap"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="(max-width:900px) 92vw, 560px" width="1080" height="1350" alt="Før: vanlig produktbilde av duftlyset på hvit bakgrunn"></div>
         <span class="bar" aria-hidden="true"></span>
         <span class="t f">Før</span><span class="t e">Etter</span>
         <span class="knob" id="knob" role="slider" tabindex="0" aria-label="Dra for å sammenligne før og etter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#161513" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
       </div>
-      <p class="ba-cap"><span>Dra for å se før og etter</span><span>Demobilde, byttes fredag</span></p>
+      <p class="ba-cap"><span>Dra for å se før og etter</span><span>Demoprodukt: Vardlys</span></p>
     </div>
   </div>
 </section>
 
 <section class="wall" aria-label="Eksempler på bilder">
   <div class="row" id="row">
-    <div class="tile"><img src="img/kal-etter-540.webp" width="540" height="675" alt="" loading="lazy"></div>
-    <div class="tile ph" data-ph="Demo: duftlys, jul" style="--c1:#E4D3B6;--c2:#B99A6E"></div>
-    <div class="tile ph" data-ph="Demo: kaffe, vinter" style="--c1:#D8CFC4;--c2:#8E7B68"></div>
-    <div class="tile ph" data-ph="Demo: hudkrem, studio" style="--c1:#ECE5DD;--c2:#C9B9A8"></div>
-    <div class="tile ph" data-ph="Demo: duftlys, Black Friday" style="--c1:#3A342C;--c2:#16130F"></div>
-    <div class="tile ph" data-ph="Demo: kaffe, jul" style="--c1:#D9C2A3;--c2:#9A6F45"></div>
-    <div class="tile ph" data-ph="Demo: hudkrem, jul" style="--c1:#E9D9D2;--c2:#BC958A"></div>
+    <div class="tile for"><img src="img/lunnhei-for.webp" srcset="img/lunnhei-for-540.webp 540w, img/lunnhei-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: nattkremen på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
+    <div class="tile"><img src="img/lunnhei-marmor.webp" srcset="img/lunnhei-marmor-540.webp 540w, img/lunnhei-marmor.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: nattkremen på lys marmor med telys og eukalyptus" decoding="async"></div>
+    <div class="tile for"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
+    <div class="tile"><img src="img/ravnsbrygg-kafe.webp" srcset="img/ravnsbrygg-kafe-540.webp 540w, img/ravnsbrygg-kafe.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: kaffeposen på en kafédisk med presskanne og julelys" decoding="async"></div>
+    <div class="tile"><img src="img/ravnsbrygg-hjemme.webp" srcset="img/ravnsbrygg-hjemme-540.webp 540w, img/ravnsbrygg-hjemme.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: kaffeposen på et kjøkkenbord med pepperkaker og levende lys" decoding="async"></div>
+    <div class="tile for"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: duftlyset på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
+    <div class="tile"><img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: duftlyset tent i en vinduskarm med papirstjerne" decoding="async"></div>
   </div>
 </section>
-<p class="wall-cap">Alle bildene er laget av ett vanlig produktbilde. Demoproduktene er våre egne, ikke kunders.</p>
+<p class="wall-cap">Hvert stemningsbilde er laget av ett vanlig produktbilde. Vardlys, Ravnsbrygg og Lunnhei er demoprodukter vi har laget selv, ikke kunders.</p>
 
 <section class="sec" id="stemninger">
   <div class="wrap moods">
     <div class="rv">
-      <p class="label">Én vare, fire stemninger</p>
-      <h2 style="margin:24px 0 30px">Samme produkt. <em>Ny sesong.</em></h2>
-      <div class="tabs" role="tablist" aria-label="Velg stemning">
-        <button class="tab" role="tab" aria-selected="true" aria-controls="m1" id="t1"><span>01</span><b>Jul</b><small>Varmt lys, granbar og pepperkaker. Til julekampanjen og gaveguiden.</small></button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="m2" id="t2"><span>02</span><b>Black Friday</b><small>Mørkt og kontrastrikt, med god plass til rabattkoden.</small></button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="m3" id="t3"><span>03</span><b>Vinter</b><small>Kaldt dagslys, ull og snø i vinduet. Til januar og februar.</small></button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="m4" id="t4"><span>04</span><b>Studio</b><small>Rent og rolig, i butikkens egne farger. Til produktsiden.</small></button>
+      <p class="label">Tre demoprodukter, fire bilder</p>
+      <h2 style="margin:24px 0 30px">Hver butikk får <em>sin egen stil.</em></h2>
+      <div class="tabs" role="tablist" aria-label="Velg bilde">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="m1" id="t1"><span>01</span><b>Kaffe på kafé</b><small>Kafédisk, presskanne og granbar. Til nettbutikken og julekampanjen.</small></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="m2" id="t2"><span>02</span><b>Kaffe hjemme</b><small>Samme pose, nytt bilde: kjøkkenbord, pepperkaker og levende lys.</small></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="m3" id="t3"><span>03</span><b>Nattkrem</b><small>Lys marmor, eukalyptus og telys. Rolig og rent, i merkets egne farger.</small></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="m4" id="t4"><span>04</span><b>Duftlys</b><small>Vinduskarm, papirstjerne og strikk. Varmt og nordisk.</small></button>
       </div>
     </div>
     <div class="stage rv mask">
-      <div class="pane on ph" id="m1" role="tabpanel" aria-labelledby="t1" data-ph="Demo: duftlys, jul" style="--c1:#E4D3B6;--c2:#B99A6E"></div>
-      <div class="pane ph" id="m2" role="tabpanel" aria-labelledby="t2" data-ph="Demo: duftlys, Black Friday" style="--c1:#3A342C;--c2:#16130F"></div>
-      <div class="pane ph" id="m3" role="tabpanel" aria-labelledby="t3" data-ph="Demo: duftlys, vinter" style="--c1:#DCE2E6;--c2:#93A2AE"></div>
-      <div class="pane ph" id="m4" role="tabpanel" aria-labelledby="t4" data-ph="Demo: duftlys, studio" style="--c1:#F1ECE4;--c2:#D3C7B6"></div>
+      <div class="pane on" id="m1" role="tabpanel" aria-labelledby="t1"><img src="img/ravnsbrygg-kafe.webp" srcset="img/ravnsbrygg-kafe-540.webp 540w, img/ravnsbrygg-kafe.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Kaffeposen på en kafédisk med presskanne og julelys" loading="lazy" decoding="async"><div class="inset"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
+      <div class="pane" id="m2" role="tabpanel" aria-labelledby="t2"><img src="img/ravnsbrygg-hjemme.webp" srcset="img/ravnsbrygg-hjemme-540.webp 540w, img/ravnsbrygg-hjemme.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Kaffeposen på et kjøkkenbord med pepperkaker og levende lys" loading="lazy" decoding="async"><div class="inset"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
+      <div class="pane" id="m3" role="tabpanel" aria-labelledby="t3"><img src="img/lunnhei-marmor.webp" srcset="img/lunnhei-marmor-540.webp 540w, img/lunnhei-marmor.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Nattkremen på lys marmor med telys og eukalyptus" loading="lazy" decoding="async"><div class="inset"><img src="img/lunnhei-for.webp" srcset="img/lunnhei-for-540.webp 540w, img/lunnhei-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: nattkremen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
+      <div class="pane" id="m4" role="tabpanel" aria-labelledby="t4"><img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Duftlyset tent i en vinduskarm med papirstjerne" loading="lazy" decoding="async"><div class="inset"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: duftlyset på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
     </div>
   </div>
 </section>
@@ -367,18 +371,18 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
       <div class="fm shop rv">
         <div class="bar-top" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="grid">
-          <figure class="ph mask" data-ph="Demo: hudkrem, studio" style="--c1:#ECE5DD;--c2:#C9B9A8"></figure>
+          <figure class="mask"><img src="img/lunnhei-marmor.webp" srcset="img/lunnhei-marmor-540.webp 540w, img/lunnhei-marmor.webp 1080w" sizes="(max-width:640px) 50vw, 260px" width="1080" height="1350" alt="Nattkremen vist som produktbilde i en nettbutikk" loading="lazy" decoding="async"></figure>
           <div class="meta" aria-hidden="true"><s style="width:80%"></s><s style="width:55%"></s><span class="p">349 kr</span><span class="k"></span></div>
         </div>
         <p class="cap"><b>Nettbutikk</b><span>4:5</span></p>
       </div>
       <div class="fm ig rv">
         <div class="who" aria-hidden="true"><i></i>butikken.deres</div>
-        <figure class="ph mask" data-ph="Demo: kaffe, vinter" style="--c1:#D8CFC4;--c2:#8E7B68"></figure>
+        <figure class="mask"><img src="img/ravnsbrygg-hjemme.webp" srcset="img/ravnsbrygg-hjemme-540.webp 540w, img/ravnsbrygg-hjemme.webp 1080w" sizes="(max-width:640px) 92vw, 340px" width="1080" height="1350" alt="Kaffeposen vist som Instagram-innlegg" loading="lazy" decoding="async"></figure>
         <p class="cap"><b>Instagram</b><span>4:5</span></p>
       </div>
       <div class="fm ad rv">
-        <figure class="ph mask" data-ph="" style="--c1:#3A342C;--c2:#16130F"><div class="copy">Black Friday<small>−30 % hele helgen</small></div></figure>
+        <figure class="mask"><img src="img/ravnsbrygg-kafe.webp" srcset="img/ravnsbrygg-kafe-540.webp 540w, img/ravnsbrygg-kafe.webp 1080w" sizes="(max-width:640px) 92vw, 440px" width="1080" height="1350" alt="Kaffeposen vist som Facebook-annonse med Black Friday-tekst" loading="lazy" decoding="async"><div class="copy">Black Friday<small>−30 % hele helgen</small></div></figure>
         <p class="cap"><b>Facebook-annonse</b><span>1:1</span></p>
       </div>
     </div>
