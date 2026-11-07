@@ -160,11 +160,11 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .ig .who i{width:26px;height:26px;border-radius:50%;background:linear-gradient(45deg,#F5B13D,#D6336C)}
 .ig figure{aspect-ratio:4/5}
 .ad figure{aspect-ratio:1}
-.ad figure>img{object-position:50% 20%}
-.ad figure::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(62% 58% at 0 0,rgba(243,239,231,.9),rgba(243,239,231,.62) 42%,rgba(243,239,231,0) 74%)}
-.ad .copy{position:absolute;z-index:1;left:16px;top:16px;color:var(--ink);font:400 31px/.95 var(--serif)}
-.ad .copy small{display:block;width:max-content;margin-top:12px;padding:6px 10px 7px;border-radius:999px;background:var(--gul);font:700 17px/1 var(--sans);letter-spacing:-.01em}
-.ad .copy span{display:block;margin-top:7px;font:700 10.5px/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.ad figure>img{object-position:50% 85%}
+.ad figure::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(62% 58% at 0 0,rgba(10,22,15,.35),rgba(10,22,15,0) 74%)}
+.ad .copy{position:absolute;z-index:1;left:16px;top:16px;color:var(--paper);font:400 31px/.95 var(--serif)}
+.ad .copy small{display:block;width:max-content;margin-top:12px;padding:6px 10px 7px;border-radius:999px;background:var(--gul);font:700 17px/1 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+.ad .copy span{display:block;margin-top:7px;font:700 10.5px/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:rgba(243,239,231,.82)}
 
 /* slik */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink)}
@@ -342,7 +342,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
     <div class="tile for"><img src="img/lunnhei-for.webp" srcset="img/lunnhei-for-540.webp 540w, img/lunnhei-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: nattkremen på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
     <div class="tile"><img src="img/lunnhei-nattbord.webp" srcset="img/lunnhei-nattbord-540.webp 540w, img/lunnhei-nattbord.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: nattkremen på et nattbord i eik en vinterkveld, med senga og lysslynga uskarpt i bakgrunnen" decoding="async"></div>
     <div class="tile for"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
-    <div class="tile"><img src="img/ravnsbrygg-kopp.webp" srcset="img/ravnsbrygg-kopp-540.webp 540w, img/ravnsbrygg-kopp.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: kaffeposen på en eikebenk ved et vindu mot snødekt bjørkeskog, med en kopp kaffe ved siden av" decoding="async"></div>
+    <div class="tile"><img src="img/ravnsbrygg-morgen.webp" srcset="img/ravnsbrygg-morgen-540.webp 540w, img/ravnsbrygg-morgen.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: kaffeposen på et mørkt eikebord foran en skoggrønn vegg i lavt morgenlys, med en kopp kaffe og en pepperkake" decoding="async"></div>
     <div class="tile for"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Før: duftlyset på hvit bakgrunn" decoding="async"><span class="chip">Før</span></div>
     <div class="tile"><img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 200px, 280px" width="1080" height="1350" alt="Etter: duftlyset i en vinduskarm i lav vintersol" decoding="async"></div>
   </div>
@@ -356,13 +356,13 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
       <p class="label">Tre demoprodukter, tilpasset jul</p>
       <h2 style="margin:24px 0 30px">Hver butikk får <em>sin egen stil.</em></h2>
       <div class="tabs" role="tablist" aria-label="Velg bilde">
-        <button class="tab" role="tab" aria-selected="true" aria-controls="m2" id="t2"><span>01</span><b>Kaffe hjemme</b><small>Eikebenken ved kjøkkenvinduet en vinterdag, med bjørkeskog i snø og en kopp kaffe. Til nettbutikken og julekampanjen.</small></button>
+        <button class="tab" role="tab" aria-selected="true" aria-controls="m2" id="t2"><span>01</span><b>Morgenkaffe</b><small>Mørkt eikebord og skoggrønn vegg i lavt morgenlys, med en kopp kaffe og en pepperkake. Til nettbutikken og julekampanjen.</small></button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="m3" id="t3"><span>02</span><b>Nattkrem</b><small>Nattbordet i eik en vinterkveld, med senga og lysslynga i vinduet bak. Rolig og varmt.</small></button>
         <button class="tab" role="tab" aria-selected="false" aria-controls="m4" id="t4"><span>03</span><b>Duftlys</b><small>Vinduskarm i lav vintersol, med snødekt hage utenfor. Lyst og nordisk.</small></button>
       </div>
     </div>
     <div class="stage rv mask">
-      <div class="pane on" id="m2" role="tabpanel" aria-labelledby="t2"><img src="img/ravnsbrygg-kopp.webp" srcset="img/ravnsbrygg-kopp-540.webp 540w, img/ravnsbrygg-kopp.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Kaffeposen på en eikebenk ved et vindu mot snødekt bjørkeskog, med en kopp kaffe ved siden av" loading="lazy" decoding="async"><div class="inset"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
+      <div class="pane on" id="m2" role="tabpanel" aria-labelledby="t2"><img src="img/ravnsbrygg-morgen.webp" srcset="img/ravnsbrygg-morgen-540.webp 540w, img/ravnsbrygg-morgen.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Kaffeposen på et mørkt eikebord foran en skoggrønn vegg i lavt morgenlys, med en kopp kaffe og en pepperkake" loading="lazy" decoding="async"><div class="inset"><img src="img/ravnsbrygg-for.webp" srcset="img/ravnsbrygg-for-540.webp 540w, img/ravnsbrygg-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: kaffeposen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
       <div class="pane" id="m3" role="tabpanel" aria-labelledby="t3"><img src="img/lunnhei-nattbord.webp" srcset="img/lunnhei-nattbord-540.webp 540w, img/lunnhei-nattbord.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Nattkremen på et nattbord i eik en vinterkveld, med senga og lysslynga uskarpt i bakgrunnen" loading="lazy" decoding="async"><div class="inset"><img src="img/lunnhei-for.webp" srcset="img/lunnhei-for-540.webp 540w, img/lunnhei-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: nattkremen på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
       <div class="pane" id="m4" role="tabpanel" aria-labelledby="t4"><img src="img/vardlys-vindu.webp" srcset="img/vardlys-vindu-540.webp 540w, img/vardlys-vindu.webp 1080w" sizes="(max-width:900px) 92vw, 640px" width="1080" height="1350" alt="Duftlyset med trelokket på i en vinduskarm i lav vintersol" loading="lazy" decoding="async"><div class="inset"><img src="img/vardlys-for.webp" srcset="img/vardlys-for-540.webp 540w, img/vardlys-for.webp 1080w" sizes="160px" width="1080" height="1350" alt="Før: duftlyset på hvit bakgrunn" loading="lazy" decoding="async"><b>Før</b></div></div>
     </div>
@@ -390,7 +390,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
         <p class="cap"><b>Instagram</b><span>4:5</span></p>
       </div>
       <div class="fm ad rv">
-        <figure class="mask"><img src="img/ravnsbrygg-vinter.webp" srcset="img/ravnsbrygg-vinter-540.webp 540w, img/ravnsbrygg-vinter.webp 1080w" sizes="(max-width:640px) 92vw, 440px" width="1080" height="1350" alt="Kaffeposen vist som Facebook-annonse med Black Friday-tekst" loading="lazy" decoding="async"><div class="copy">Black Friday<small>−30 %</small><span>hele helgen</span></div></figure>
+        <figure class="mask"><img src="img/ravnsbrygg-annonse.webp" srcset="img/ravnsbrygg-annonse-540.webp 540w, img/ravnsbrygg-annonse.webp 1080w" sizes="(max-width:640px) 92vw, 440px" width="1080" height="1350" alt="Kaffeposen vist som Facebook-annonse med Black Friday-tekst" loading="lazy" decoding="async"><div class="copy">Black Friday<small>−30 %</small><span>hele helgen</span></div></figure>
         <p class="cap"><b>Facebook-annonse</b><span>1:1</span></p>
       </div>
     </div>
