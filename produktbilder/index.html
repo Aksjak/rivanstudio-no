@@ -160,9 +160,11 @@ h1 .sm{display:block;font-size:.5em;line-height:1.05;color:var(--muted);font-sty
 .ig .who i{width:26px;height:26px;border-radius:50%;background:linear-gradient(45deg,#F5B13D,#D6336C)}
 .ig figure{aspect-ratio:4/5}
 .ad figure{aspect-ratio:1}
-.ad figure>img{object-position:50% 55%}
-.ad .copy{position:absolute;left:0;right:0;top:0;padding:18px 18px 72px;background:linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.45) 55%,transparent);color:#fff;font:400 30px/1 var(--serif);text-shadow:0 1px 12px rgba(0,0,0,.5)}
-.ad .copy small{display:block;font:600 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-top:10px;color:var(--gul)}
+.ad figure>img{object-position:50% 20%}
+.ad figure::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(62% 58% at 0 0,rgba(243,239,231,.9),rgba(243,239,231,.62) 42%,rgba(243,239,231,0) 74%)}
+.ad .copy{position:absolute;z-index:1;left:16px;top:16px;color:var(--ink);font:400 31px/.95 var(--serif)}
+.ad .copy small{display:block;width:max-content;margin-top:12px;padding:6px 10px 7px;border-radius:999px;background:var(--gul);font:700 17px/1 var(--sans);letter-spacing:-.01em}
+.ad .copy span{display:block;margin-top:7px;font:700 10.5px/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
 
 /* slik */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink)}
@@ -388,7 +390,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
         <p class="cap"><b>Instagram</b><span>4:5</span></p>
       </div>
       <div class="fm ad rv">
-        <figure class="mask"><img src="img/ravnsbrygg-kjokken.webp" srcset="img/ravnsbrygg-kjokken-540.webp 540w, img/ravnsbrygg-kjokken.webp 1080w" sizes="(max-width:640px) 92vw, 440px" width="1080" height="1350" alt="Kaffeposen vist som Facebook-annonse med Black Friday-tekst" loading="lazy" decoding="async"><div class="copy">Black Friday<small>−30 % hele helgen</small></div></figure>
+        <figure class="mask"><img src="img/ravnsbrygg-vinter.webp" srcset="img/ravnsbrygg-vinter-540.webp 540w, img/ravnsbrygg-vinter.webp 1080w" sizes="(max-width:640px) 92vw, 440px" width="1080" height="1350" alt="Kaffeposen vist som Facebook-annonse med Black Friday-tekst" loading="lazy" decoding="async"><div class="copy">Black Friday<small>−30 %</small><span>hele helgen</span></div></figure>
         <p class="cap"><b>Facebook-annonse</b><span>1:1</span></p>
       </div>
     </div>
